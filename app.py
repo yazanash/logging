@@ -25,6 +25,11 @@ with app.app_context():
     db.create_all()
 
 
+@app.route('/', methods=['GET'])
+def home():
+    return "Welcome api"
+
+
 @app.route('/logs', methods=['POST'])
 def save_logs():
     try:
