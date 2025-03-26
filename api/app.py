@@ -3,13 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-# SQLite example:
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///logs.db'
 
-# MySQL example:
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://username:password@host/dbname'
-
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres.keucjebazomvqrebmmde:dR#AHczv55RV4_!@aws-0-eu-central-1.pooler.supabase.com:6543/postgres?sslmode=require"
 db = SQLAlchemy(app)
 
 
@@ -19,7 +14,7 @@ class Log(db.Model):
     message = db.Column(db.String(500), nullable=False)
 
 
-# Create tables
+# Create tables app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://user:password@remotehost.com/dbname'
 with app.app_context():
     db.create_all()
 
