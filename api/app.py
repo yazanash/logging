@@ -12,7 +12,7 @@ db = SQLAlchemy(app)
 class Log(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(500), nullable=False)
-
+    timestamp = db.Column(db.String(500), nullable=False)
 
 # Create tables app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://user:password@remotehost.com/dbname'
 with app.app_context():
@@ -33,7 +33,7 @@ def save_logs():
 
         # Save logs to the database
         for log_message in incoming_logs:
-            log = Log(message=log_message["message"])
+            log = Log(message=log_message["message"],timestamp=log_message["timestamp"])
             db.session.add(log)
         db.session.commit()
 
